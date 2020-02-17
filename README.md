@@ -1,5 +1,10 @@
 # Template for React apps
 
+As a beginner react developer you can start off with a create-react-app for your projects. If you eject the configs would be messy.
+And as you move to more professional projects, you need a better environment with nice tool belt that is custom configurable.
+
+This project serves as a good start for pet projects.
+
 ## Added Features
 
 1. JavaScript
@@ -25,12 +30,14 @@
    - Support for SCSS and SCSS modules
    - Support for image processing
 
-## To do
+## To do - add additional features
 
 - Add Redux and Redux Toolkit
-- Code Structure using ducks pattern recommended by Redux
-- Enable prettier, eslint, fork-ts-checker-webpack-plugin
-- Enable Jest/ testing tools
+- Organize the Code Structure using ducks pattern recommended by Redux
+- ESLint, Pretter, and Stylelint for code quality consistency
+- Run typescript type checking in parallel mode - fork-ts-checker-webpack-plugin
+- Jest for unit testing
+- Dockerize the project
 
 ## Reference
 
