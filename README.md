@@ -1,9 +1,11 @@
 # Template for React apps
 
-As a beginner react developer you can start off with a create-react-app for your projects. If you eject the configs would be messy.
-And as you move to more professional projects, you need a better environment with nice tool belt that is custom configurable.
+As a beginner react developer you can start off with a create-react-app for your projects.
+create-react-app is a great starting point but doesn't prepare the field to a real-world, production-ready SPA.
+There is an option with create-react-app to eject and personalize the configs, that is too messy to handle.
 
-This project serves as a good start for pet projects.
+The goal of this repo is to scaffold a React SPA that has consistent code style, installs and configures default React libraries,
+uses styled-component and React Bootstrap to give your responsive, mobile-first application.
 
 ## Added Features
 
@@ -32,12 +34,15 @@ This project serves as a good start for pet projects.
 
 ## To do - add additional features
 
-- Add Redux, Redux Toolkit and Redux Saga
+- Add Redux and Redux Toolkit
+- Add Redux Saga
+- Add React Bootstrap
 - Organize the Code Structure using ducks pattern recommended by Redux
 - ESLint, Pretter, and Stylelint for code quality consistency
 - Run typescript type checking in parallel mode - fork-ts-checker-webpack-plugin
 - Jest for unit testing
 - Dockerize the project
+- Add authentication provider support
 
 ## Reference
 
