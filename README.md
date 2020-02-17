@@ -32,7 +32,7 @@ This project serves as a good start for pet projects.
 
 ## To do - add additional features
 
-- Add Redux and Redux Toolkit
+- Add Redux, Redux Toolkit and Redux Saga
 - Organize the Code Structure using ducks pattern recommended by Redux
 - ESLint, Pretter, and Stylelint for code quality consistency
 - Run typescript type checking in parallel mode - fork-ts-checker-webpack-plugin
