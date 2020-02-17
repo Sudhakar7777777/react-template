@@ -21,6 +21,7 @@ uses styled-component and React Bootstrap to give your responsive, mobile-first 
 2. React - Core features only
 
    - react, react-dom, react-hot-loader, react-router, react-router-dom
+   - Add React Bootstrap
 
 3. Webpack
    - Compile ES6+ code using Babel and TypeScript
@@ -36,7 +37,6 @@ uses styled-component and React Bootstrap to give your responsive, mobile-first 
 
 - Add Redux and Redux Toolkit
 - Add Redux Saga
-- Add React Bootstrap
 - Organize the Code Structure using ducks pattern recommended by Redux
 - ESLint, Pretter, and Stylelint for code quality consistency
 - Run typescript type checking in parallel mode - fork-ts-checker-webpack-plugin

@@ -108,7 +108,8 @@ const config = {
       ".jpg",
       ".jpeg",
       ".svg"
-    ]
+    ],
+    modules: [resolve(__dirname, "src"), "node_modules"]
   },
   plugins: [
     new CleanWebpackPlugin(),
