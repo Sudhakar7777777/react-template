@@ -23,6 +23,7 @@ const PATHS = {
   app: path.join(__dirname, "src"),
   build: path.join(__dirname, "dist"),
   node_modules: path.resolve(__dirname, "node_modules"),
+  public: path.join(__dirname, "src/public"),
   public_path: "/assets/",
 };
 
@@ -70,7 +71,7 @@ const config = {
     new HtmlWebPackPlugin({
       title: APP_TITLE,
       filename: FILES.output_html,
-      template: path.join(PATHS.app, FILES.template), // Load a custom template (lodash by default)
+      template: path.join(PATHS.public, FILES.template), // Load a custom template (lodash by default)
       hash: isDevelopment ? false : true,
       inject: true,
       environment: isDevelopment ? "Development" : "Production",
