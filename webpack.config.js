@@ -1,17 +1,73 @@
+const path = require("path");
+const webpack = require("webpack");
 const { resolve } = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackBar = require("webpackbar");
 
+// Define Custom Params -- tweak based on your application needs this section
 const isDevelopment = process.env.NODE_ENV !== "production";
+const PORT = 8080;
+const APP_TITLE = "SBK Application";
+const APP_VERSION = "0.1";
+const FILES = {
+  main: "index.tsx",
+  template: "index.ejs",
+  output_html: "index.html",
+  favicon: "favicon.ico",
+  dev_filename: "[name].bundle.js",
+  prod_filename: "[name].bundle.[hash].js"
+};
+const PATHS = {
+  app: path.join(__dirname, "src"),
+  build: path.join(__dirname, "dist"),
+  node_modules: path.resolve(__dirname, "node_modules"),
+  public_path: "/assets/"
+};
 
+// Define main config -- ideally not required to change this section
 const config = {
   context: __dirname,
   entry: {
-    main: resolve("./src/index.tsx")
+    app: [path.join(PATHS.app, FILES.main)]
   },
   mode: isDevelopment ? "development" : "production",
+  devtool: isDevelopment ? "source-map" : "",
+  output: {
+    path: PATHS.build,
+    // publicPath: PATHS.public_path,	// configure assets folder for images, etc. later
+    filename: isDevelopment ? FILES.dev_filename : FILES.prod_filename
+  },
+  optimization: {
+    // Create a vendors chunk, which includes all code from node_modules.
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebPackPlugin({
+      title: APP_TITLE,
+      filename: FILES.output_html,
+      template: path.join(PATHS.app, FILES.template), // Load a custom template (lodash by default)
+      hash: isDevelopment ? false : true,
+      inject: true,
+      environment: isDevelopment ? "Development" : "Production",
+      version: APP_VERSION
+    }),
+    new MiniCssExtractPlugin({
+      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
+    }),
+    new WebpackBar()
+  ],
   module: {
     rules: [
       {
@@ -110,21 +166,6 @@ const config = {
       ".svg"
     ],
     modules: [resolve(__dirname, "src"), "node_modules"]
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    }),
-    new MiniCssExtractPlugin({
-      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
-    }),
-    new WebpackBar()
-  ],
-  output: {
-    filename: isDevelopment ? "[name].js" : "[name].[hash].js"
   }
 };
 
