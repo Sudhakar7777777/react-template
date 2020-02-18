@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
-const { resolve } = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const {resolve} = require("path");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackBar = require("webpackbar");
@@ -17,27 +17,27 @@ const FILES = {
   output_html: "index.html",
   favicon: "favicon.ico",
   dev_filename: "[name].bundle.js",
-  prod_filename: "[name].bundle.[hash].js"
+  prod_filename: "[name].bundle.[hash].js",
 };
 const PATHS = {
   app: path.join(__dirname, "src"),
   build: path.join(__dirname, "dist"),
   node_modules: path.resolve(__dirname, "node_modules"),
-  public_path: "/assets/"
+  public_path: "/assets/",
 };
 
 // Define main config -- ideally not required to change this section
 const config = {
   context: __dirname,
   entry: {
-    app: [path.join(PATHS.app, FILES.main)]
+    app: [path.join(PATHS.app, FILES.main)],
   },
   mode: isDevelopment ? "development" : "production",
   devtool: isDevelopment ? "source-map" : "",
   output: {
     path: PATHS.build,
     // publicPath: PATHS.public_path,	// configure assets folder for images, etc. later
-    filename: isDevelopment ? FILES.dev_filename : FILES.prod_filename
+    filename: isDevelopment ? FILES.dev_filename : FILES.prod_filename,
   },
   devServer: {
     contentBase: PATHS.build,
@@ -47,10 +47,10 @@ const config = {
     host: "localhost",
     port: DEV_SERVER_PORT,
     proxy: {
-      "/api": "http://localhost:3000"
+      "/api": "http://localhost:3000",
     },
     publicPath: "/",
-    stats: "errors-only"
+    stats: "errors-only",
   },
   optimization: {
     runtimeChunk: false,
@@ -60,10 +60,10 @@ const config = {
         commonStyle: {
           test: /[\\/]node_modules[\\/]/,
           name: "vendors",
-          chunks: "all"
-        }
-      }
-    }
+          chunks: "all",
+        },
+      },
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -74,13 +74,13 @@ const config = {
       hash: isDevelopment ? false : true,
       inject: true,
       environment: isDevelopment ? "Development" : "Production",
-      version: APP_VERSION
+      version: APP_VERSION,
     }),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
     }),
-    new WebpackBar()
+    new WebpackBar(),
   ],
   module: {
     rules: [
@@ -88,21 +88,21 @@ const config = {
         test: /\.(t|j)sx?$/,
         loader: "babel-loader",
         include: PATHS.app,
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.js$/,
         loader: "source-map-loader",
-        enforce: "pre"
+        enforce: "pre",
       },
       {
         test: /\.html$/,
         use: [
           {
             loader: "html-loader",
-            options: { minimize: !isDevelopment }
-          }
-        ]
+            options: {minimize: !isDevelopment},
+          },
+        ],
       },
       {
         test: /\.module\.s(a|c)ss$/,
@@ -112,16 +112,16 @@ const config = {
             loader: "css-loader",
             options: {
               modules: true,
-              sourceMap: isDevelopment
-            }
+              sourceMap: isDevelopment,
+            },
           },
           {
             loader: "sass-loader",
             options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
+              sourceMap: isDevelopment,
+            },
+          },
+        ],
       },
       {
         test: /\.s(a|c)ss$/,
@@ -132,10 +132,10 @@ const config = {
           {
             loader: "sass-loader",
             options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
+              sourceMap: isDevelopment,
+            },
+          },
+        ],
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -146,26 +146,26 @@ const config = {
             options: {
               mozjpeg: {
                 progressive: true,
-                quality: 65
+                quality: 65,
               },
               optipng: {
-                enabled: !isDevelopment
+                enabled: !isDevelopment,
               },
               pngquant: {
                 quality: "65-90",
-                speed: 4
+                speed: 4,
               },
               gifsicle: {
-                interlaced: false
+                interlaced: false,
               },
               webp: {
-                quality: 75
-              }
-            }
-          }
-        ]
-      }
-    ]
+                quality: 75,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   resolve: {
     extensions: [
@@ -178,10 +178,10 @@ const config = {
       ".png",
       ".jpg",
       ".jpeg",
-      ".svg"
+      ".svg",
     ],
-    modules: [resolve(__dirname, "src"), "node_modules"]
-  }
+    modules: [resolve(__dirname, "src"), "node_modules"],
+  },
 };
 
 module.exports = config;
