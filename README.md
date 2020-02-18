@@ -49,3 +49,5 @@ uses styled-component and React Bootstrap to give your responsive, mobile-first 
 1. https://webpack.js.org/guides/printable/
 2. https://github.com/Microsoft/TypeScript-Babel-Starter
 3. https://developerhandbook.com/webpack/webpack-4-from-absolute-scratch/
+4. https://hackernoon.com/lets-start-with-webpack-4-91a0f1dba02e
+5. https://linguinecode.com/post/how-to-setup-webpack-dev-server-react-babel

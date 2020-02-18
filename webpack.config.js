@@ -8,7 +8,7 @@ const WebpackBar = require("webpackbar");
 
 // Define Custom Params -- tweak based on your application needs this section
 const isDevelopment = process.env.NODE_ENV !== "production";
-const PORT = 8080;
+const DEV_SERVER_PORT = 8080;
 const APP_TITLE = "SBK Application";
 const APP_VERSION = "0.1";
 const FILES = {
@@ -39,11 +39,25 @@ const config = {
     // publicPath: PATHS.public_path,	// configure assets folder for images, etc. later
     filename: isDevelopment ? FILES.dev_filename : FILES.prod_filename
   },
+  devServer: {
+    contentBase: PATHS.build,
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    host: "localhost",
+    port: DEV_SERVER_PORT,
+    proxy: {
+      "/api": "http://localhost:3000"
+    },
+    publicPath: "/",
+    stats: "errors-only"
+  },
   optimization: {
+    runtimeChunk: false,
     // Create a vendors chunk, which includes all code from node_modules.
     splitChunks: {
       cacheGroups: {
-        commons: {
+        commonStyle: {
           test: /[\\/]node_modules[\\/]/,
           name: "vendors",
           chunks: "all"
@@ -73,6 +87,7 @@ const config = {
       {
         test: /\.(t|j)sx?$/,
         loader: "babel-loader",
+        include: PATHS.app,
         exclude: /node_modules/
       },
       {
