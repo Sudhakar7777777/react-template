@@ -51,3 +51,4 @@ uses styled-component and React Bootstrap to give your responsive, mobile-first 
 3. https://developerhandbook.com/webpack/webpack-4-from-absolute-scratch/
 4. https://hackernoon.com/lets-start-with-webpack-4-91a0f1dba02e
 5. https://linguinecode.com/post/how-to-setup-webpack-dev-server-react-babel
+6. https://thomlom.dev/setup-eslint-prettier-react/
